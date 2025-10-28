@@ -1,7 +1,7 @@
 import React from "react";
 import { CiBookmark } from "react-icons/ci";
 
-const Blog = ({ blog, handleAddToBookmark }) => {
+const Blog = ({ id, blog, handleAddToBookmark, handleMarkedAsRead }) => {
   const {
     cover,
     title,
@@ -13,7 +13,7 @@ const Blog = ({ blog, handleAddToBookmark }) => {
   } = blog;
 
   return (
-    <div className=" flex flex-col gap-y-4">
+    <div className=" flex flex-col gap-y-4 mb-8">
       <img
         className="w-full h-80 object-cover"
         src={cover}
@@ -39,15 +39,19 @@ const Blog = ({ blog, handleAddToBookmark }) => {
         </div>
       </div>
       <h2 className="text-4xl">{title}</h2>
-      <p>
+      <div className="flex gap-2">
         {hashtags.map((hash, id) => (
           <span key={id}>
-            <a className="ml-2" href="">
-              {hash}
-            </a>
+            <a>{hash}</a>
           </span>
         ))}
-      </p>
+      </div>
+      <button
+        onClick={() => handleMarkedAsRead(id, reading_time)}
+        className="text-left text-blue-500 underline font-bold"
+      >
+        Mark As read
+      </button>
     </div>
   );
 };
